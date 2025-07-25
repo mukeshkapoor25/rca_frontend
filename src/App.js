@@ -7,6 +7,7 @@ import Navigation from './components/Navigation';
 import UploadLogFile from './components/UploadLogFile';
 import RCALatestCard from './components/RCALatestCard';
 import Chatbot from './components/Chatbot';
+import LandingPage from './components/LandingPage';
 
 // Services
 import { apiService } from './services/apiService';
@@ -58,15 +59,9 @@ function App() {
       <Navigation isConnected={isConnected} agentsStatus={agentsStatus} />
       <Container fluid className="py-4">
         <Routes>
-                 
-          <Route 
-            path="/upload" 
-            element={<UploadLogFile />} 
-          />
-          <Route 
-            path="/rca-results" 
-            element={<RCALatestCard />} 
-          />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/upload" element={<UploadLogFile />} />
+          <Route path="/rca-results" element={<RCALatestCard />} />
         </Routes>
       </Container>
       <Chatbot />
