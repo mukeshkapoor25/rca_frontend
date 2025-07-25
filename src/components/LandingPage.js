@@ -30,7 +30,7 @@ export default function LandingPage() {
         <p className="subtitle">AI-powered Log Analytics & Root Cause Analysis</p>
         <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
           <button className="cta-button" onClick={() => navigate('/upload')}>Upload Logs</button>
-          <button className="cta-button" style={{ background: '#4f8cff', color: '#fff' }} onClick={() => navigate('/rca')}>View RCA Results</button>
+          <button className="cta-button" style={{ background: '#4f8cff', color: '#fff' }} onClick={() => navigate('/rca-results')}>View RCA Results</button>
         </div>
       </section>
 
