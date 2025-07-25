@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 // Create axios instances for different services
+const baseURL = window.location.origin.includes('localhost') ? 'http://56.228.43.181:8000' : 'http://56.228.43.181:8000';
 const apiClient = axios.create({
-  baseURL: 'https://56.228.43.181:8000',
+  baseURL:baseURL,
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
@@ -10,7 +11,7 @@ const apiClient = axios.create({
 });
 
 const fileUploadClient = axios.create({
-  baseURL: 'https://56.228.43.181:8000',
+  baseURL:baseURL,
   timeout: 120000, // Longer timeout for file uploads
   headers: {
     'Content-Type': 'multipart/form-data',

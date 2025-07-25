@@ -1,5 +1,7 @@
 export const uploadLogFile = async (file) => {
-  const endpoint = 'https://56.228.43.181:7860/upload/';
+  const endpoint = window.location.origin.includes('localhost') ? 'https://56.228.43.181:7860/upload/' : 'http://56.228.43.181:7860/upload';
+  //const endpoint = 'https://56.228.43.181:7860/upload/';
+  console.log('Upload endpoint:: '+endpoint)
   const formData = new FormData();
   formData.append('file', file);
 
