@@ -94,3 +94,57 @@ npm run build
 ```
 
 The build artifacts will be in the `build/` directory, ready for deployment to any static hosting service.
+
+
+
+## Commands to build and push frontend docker image to ECR.
+
+### Pre-requisites:
+
+1. AWS CLI must be installed on your local machine.
+2. Docker must be installed and running.
+
+### Configure AWS Credentials
+
+Set up your AWS access keys in the credentials file:
+
+File path: ~/.aws/credentials (Note: ~ means your home directory)
+
+```
+[default]
+aws_access_key_id = YOUR_ACCESS_KEY
+aws_secret_access_key = YOUR_SECRET_ACCESS_KEY
+```
+
+Replace YOUR_ACCESS_KEY and YOUR_SECRET_ACCESS_KEY with your actual credentials.
+
+### Authenticate Docker with ECR
+
+1. Make sure the Dockerfile is located in the root directory of the repository.
+2. Replace {version} with your desired image version (e.g., v1.0.0):
+
+```
+aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 113938649535.dkr.ecr.eu-north-1.amazonaws.com
+```
+
+### Build the Docker Image
+
+```
+docker build  --platform=linux/amd64 -t 113938649535.dkr.ecr.eu-north-1.amazonaws.com/group13/rca_frontend:{version} .
+```
+
+4. Push docker image to the ECR repository.
+
+```
+docker push 113938649535.dkr.ecr.eu-north-1.amazonaws.com/group13/rca_frontend:{version}
+```
+
+5. Command to run docker container on Ec2 instance.
+
+If you are running the docker container and already container with same name exist then delete the existing one and then create the new one.
+
+```
+docker stop rca_frontend
+docker rm rca_frontend
+docker run -d -p 80:80 --name rca_frontend 113938649535.dkr.ecr.eu-north-1.amazonaws.com/group13/rca_frontend:{version}
+```
